@@ -3,30 +3,16 @@ package com.example.blooddonation
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.JsonWriter
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.video.Recorder
-import androidx.camera.video.Recording
-import androidx.camera.video.VideoCapture
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import android.widget.Toast
 import androidx.camera.core.*
 import com.example.blooddonation.databinding.ActivityQractivityBinding
-import androidx.camera.lifecycle.ProcessCameraProvider
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.mlkit.vision.barcode.BarcodeScannerOptions
-import com.google.mlkit.vision.barcode.BarcodeScanning
-import com.google.mlkit.vision.barcode.common.Barcode
-import com.google.mlkit.vision.common.InputImage
-import java.util.concurrent.Executor
 
 @ExperimentalGetImage
 class QRActivity : AppCompatActivity() {
@@ -83,7 +69,7 @@ class QRActivity : AppCompatActivity() {
             }.toTypedArray()
 
         @JvmStatic
-        fun newIntent(context: MainActivity): Intent {
+        fun newIntent(context: LoginActivity): Intent {
             return Intent(context, QRActivity::class.java)
         }
     }
