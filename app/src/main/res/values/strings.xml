@@ -1,3 +1,47 @@
 <resources>
     <string name="app_name">BloodDonation</string>
+    <string name="formless_mother">Formless Mother</string>
+    <string name="authorization">Авторизация</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="login">Войти</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="signing_up">Регистрация</string>
+    <string name="logining">Вход</string>
+    <string name="already_have_an_account">Уже есть аккаунт?</string>
+    <string name="repeat_password">Повторите пароль</string>
+    <string name="last_name">Фамилия</string>
+    <string name="middle_name">Отчество</string>
+    <string name="first_name">Имя</string>
+    <string name="proceed">Продолжить</string>
+    <string name="filling_personal_data">Заполнение персональных данных</string>
+    <string name="date_template">дд.мм.гггг</string>
+    <string name="sex">Пол</string>
+    <string name="male">Муж</string>
+    <string name="female">Жен</string>
+    <string name="city">Город</string>
+    <string name="blood_type">Группа крови</string>
+    <string name="series_and_number">Серия и номер паспорта</string>
+    <string name="whole_blood">Цельная кровь</string>
+    <string name="plasma">Плазма</string>
+    <string name="platelets">Тромбоциты</string>
+    <string name="red_blood_cells">Эритроциты</string>
+    <string name="granulocytes">Гранулоциты</string>
+    <string name="blood_components">Компоненты крови</string>
+    <string name="check_validity_of_your_data">Проверьте правильность введённых данных</string>
+    <string name="other">Другой</string>
+    <string name="write_date_in_a_correct_way">Укажите дату в правильном формате</string>
+    <string name="write_data_in_a_correct_way">Заполните данные в правильном формате</string>
+
+    <string-array name="blood_types">
+        <item>Первая положительная - O(I) Rh+</item>
+        <item>Первая отрицательная - O(I) Rh-</item>
+        <item>Вторая положительная - A(II) Rh+</item>
+        <item>Вторая отрицательная - A(II) Rh-</item>
+        <item>Третья положительная - B(III) Rh+</item>
+        <item>Третья отрицательная - B(III) Rh-</item>
+        <item>Четвёртая положительная - AB(IV) Rh+</item>
+        <item>Четвёртая отрицательная - AB(IV) Rh-</item>
+        <item>Не знаю</item>
+    </string-array>
 </resources>
