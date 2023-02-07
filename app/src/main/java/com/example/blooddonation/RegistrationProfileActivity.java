@@ -1,10 +1,14 @@
 package com.example.blooddonation;
 
+import static com.example.blooddonation.Constants.CLIENT_ROLE;
+import static com.example.blooddonation.Constants.USER_EXTRA;
+import static com.example.blooddonation.Utils.getTrimmedValue;
+import static com.example.blooddonation.Utils.parseDate;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,17 +17,13 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.blooddonation.databinding.ActivityRegistrationProfileBinding;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class RegistrationProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "RegistrationProfileActivity";
-    private static final String USER_EXTRA = "user";
-    private static final String CLIENT_ROLE = "CLIENT";
 
     private ActivityRegistrationProfileBinding binding;
     private RegistrationViewModel viewModel;
@@ -46,7 +46,7 @@ public class RegistrationProfileActivity extends AppCompatActivity {
         binding.buttonSingUp.setOnClickListener(view -> {
             Date dateOfBirth;
             try {
-                dateOfBirth = parseDate(getTrimmedValue(binding.editTextDateOfBirth));
+                dateOfBirth = parseDate(getTrimmedValue(binding.editTextDateOfBirth), "dd.MM.yyyy");
             } catch (ParseException e) {
                 e.printStackTrace();
                 Toast.makeText(
@@ -115,10 +115,6 @@ public class RegistrationProfileActivity extends AppCompatActivity {
         });
     }
 
-    private String getTrimmedValue(TextView textView) {
-        return textView.getText().toString().trim();
-    }
-
     private void observeViewModel() {
         viewModel.getError().observe(this, errorMessage -> {
             if (errorMessage != null) {
@@ -130,11 +126,6 @@ public class RegistrationProfileActivity extends AppCompatActivity {
             finish();
         });
 
-    }
-
-    private Date parseDate(String date) throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
-        return formatter.parse(date);
     }
 
     public static Intent newIntent(Context context, User user) {

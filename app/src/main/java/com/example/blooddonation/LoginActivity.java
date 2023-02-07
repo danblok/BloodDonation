@@ -1,5 +1,6 @@
 package com.example.blooddonation;
 
+import androidx.annotation.OptIn;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.ExperimentalGetImage;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,6 +14,9 @@ import android.widget.Toast;
 import com.example.blooddonation.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private static final String CLIENT_ROLE = "CLIENT";
+    private static final String MANGER_ROLE = "MANAGER";
 
     private ActivityLoginBinding binding;
     private LoginViewModel viewModel;
@@ -29,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         setupClickListeners();
     }
 
+    @OptIn(markerClass = ExperimentalGetImage.class)
     private void observeViewModel() {
         viewModel.getError().observe(this, errorMessage -> {
             if (errorMessage != null) {
@@ -46,10 +51,12 @@ public class LoginActivity extends AppCompatActivity {
         });
         viewModel.getUser().observe(this, user -> {
             if (user != null) {
-                //TODO start qr reader activity (admin)
-                //TODO start applications list activity (client)
-                Log.d("LoginActivity", "User has been found");
-                //finish();
+                if (user.getRole().equals(MANGER_ROLE)) {
+                    startActivity(QRActivity.newIntent(this));
+                } else if (user.getRole().equals(CLIENT_ROLE)) {
+                    startActivity(ApplicationsActivity.newIntent(this));
+                }
+                finish();
             }
         });
     }

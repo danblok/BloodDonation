@@ -32,7 +32,7 @@ class Camera(private val context: AppCompatActivity) {
     }
 
     @ExperimentalGetImage
-    fun startCamera(listener: QRListener) { // TODO redo back
+    fun startCamera(listener: QRListener) {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(context)
 
         cameraProviderFuture.addListener({

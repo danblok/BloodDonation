@@ -10,8 +10,11 @@
 
 
     <color name="gray">#878787</color>
+    <color name="light_gray">#ECECEC</color>
     <color name="red">#AA0303</color>
     <color name="blue">#000C75</color>
+    <color name="green">#0B8B01</color>
+
 
     <color name="qr_code_reader_square">#FFFFFFFF</color>
 </resources>

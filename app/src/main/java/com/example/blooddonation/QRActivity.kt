@@ -5,23 +5,25 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.camera.core.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import java.util.concurrent.Executors
-import android.widget.Toast
-import androidx.camera.core.*
 import com.example.blooddonation.databinding.ActivityQractivityBinding
+import com.google.firebase.auth.FirebaseAuth
+import java.util.concurrent.Executors
 
 @ExperimentalGetImage
 class QRActivity : AppCompatActivity() {
 
     private lateinit var viewBinding: ActivityQractivityBinding
     private lateinit var camera: Camera
+    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private val qrListener: QRListener = {
-        data -> Log.d(TAG, data.toString())
+        applicationId ->
+            startActivity(ApplicationManagementActivity.newIntent(this, applicationId))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,22 +35,17 @@ class QRActivity : AppCompatActivity() {
 
         if (allPermissionsGranted()) {
             camera.startCamera(qrListener)
-            //                        TODO
-            // ---------------------------------------------------- //
-            /* Receive information about a client: id and application_id
-            *  start activity on a doctor's behalf where he can
-            *  change the status of the application (opened, closed, ip).
-            *  Then the application is closed, notify the client about
-            *  a successful blood donation and give him advice on health
-            *  (how to behave after the donation, what drink, eat, what
-            *  drugs to take and etc)*/
-            // ---------------------------------------------------- //
         } else {
             ActivityCompat.requestPermissions(
                 this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
 
         camera.setCameraExecutor(Executors.newSingleThreadExecutor())
+
+        viewBinding.fabLogSignOut.setOnClickListener {
+            auth.signOut();
+            startActivity(LoginActivity.newIntent(this))
+        }
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
@@ -69,7 +66,7 @@ class QRActivity : AppCompatActivity() {
             }.toTypedArray()
 
         @JvmStatic
-        fun newIntent(context: LoginActivity): Intent {
+        fun newIntent(context: AppCompatActivity): Intent {
             return Intent(context, QRActivity::class.java)
         }
     }

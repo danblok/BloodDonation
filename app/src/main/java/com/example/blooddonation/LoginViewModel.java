@@ -1,5 +1,7 @@
 package com.example.blooddonation;
 
+import static com.example.blooddonation.Constants.USERS_COLLECTION;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -10,8 +12,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginViewModel extends ViewModel {
-
-    private static final String USERS_COLLECTION = "Users";
 
     private final FirebaseAuth auth;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();

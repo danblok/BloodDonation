@@ -13,20 +13,29 @@ public class Application implements Serializable {
     private String userId;
     private String bloodComponent;
     private String donationType;
-    private String city;
     private String donationPlace;
+    private String status;
 
     public Application() {
     }
 
-    public Application(String id, Date due, String userId, String bloodComponent, String donationType, String city, String donationPlace) {
+    public Application(String id, Date donationDate, String userId, String bloodComponent, String donationType, String donationPlace, String status) {
         this.id = id;
-        this.donationDate = due;
+        this.donationDate = donationDate;
         this.userId = userId;
         this.bloodComponent = bloodComponent;
         this.donationType = donationType;
-        this.city = city;
         this.donationPlace = donationPlace;
+        this.status = status;
+    }
+
+    public Application(Date donationDate, String userId, String bloodComponent, String donationType, String donationPlace, String status) {
+        this.donationDate = donationDate;
+        this.userId = userId;
+        this.bloodComponent = bloodComponent;
+        this.donationType = donationType;
+        this.donationPlace = donationPlace;
+        this.status = status;
     }
 
     public String getId() {
@@ -69,19 +78,32 @@ public class Application implements Serializable {
         this.donationType = donationType;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getDonationPlace() {
         return donationPlace;
     }
 
     public void setDonationPlace(String donationPlace) {
         this.donationPlace = donationPlace;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Application{" +
+                "id='" + id + '\'' +
+                ", donationDate=" + donationDate +
+                ", userId='" + userId + '\'' +
+                ", bloodComponent='" + bloodComponent + '\'' +
+                ", donationType='" + donationType + '\'' +
+                ", donationPlace='" + donationPlace + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

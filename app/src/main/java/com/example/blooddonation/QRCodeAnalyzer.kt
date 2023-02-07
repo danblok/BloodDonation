@@ -1,17 +1,15 @@
 package com.example.blooddonation
 
-import android.graphics.Rect
 import android.util.Log
 import androidx.camera.core.ExperimentalGetImage
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
-import com.google.gson.Gson
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
 
-typealias QRListener = (data: Application) -> Unit
+typealias QRListener = (applicationId: String) -> Unit
 
 @ExperimentalGetImage
 class QRCodeAnalyzer(
@@ -37,9 +35,10 @@ class QRCodeAnalyzer(
                 .addOnSuccessListener { barcodes ->
                     for (barcode in barcodes) {
                         val rawValue = barcode.rawValue
-                        val gson = Gson()
-                        val application = gson.fromJson(rawValue, Application::class.java)
-                        listener.invoke(application)
+                        if (rawValue != null) {
+                            Log.d(TAG, rawValue)
+                            listener.invoke(rawValue)
+                        }
                     }
                 }
                 .addOnFailureListener {
