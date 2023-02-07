@@ -52,8 +52,7 @@ public class RegistrationViewModel extends ViewModel {
                     if (authUser == null) {
                         return;
                     }
-                    newUser.setId(authUser.getUid());
-                    user.setValue(newUser);
+                    firebaseUser.setValue(authUser);
                 })
                 .addOnFailureListener(e -> error.setValue(e.getMessage()));
     }
@@ -64,6 +63,7 @@ public class RegistrationViewModel extends ViewModel {
                 .set(newUser)
                 .addOnSuccessListener(documentReference -> {
                     Log.d(TAG, "A new user was added");
+                    user.setValue(newUser);
                 })
                 .addOnFailureListener(e -> {
                     error.setValue(e.getMessage());

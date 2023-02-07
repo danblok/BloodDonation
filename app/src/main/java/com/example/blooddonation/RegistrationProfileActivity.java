@@ -21,7 +21,6 @@ import java.util.Locale;
 
 public class RegistrationProfileActivity extends AppCompatActivity {
 
-
     private static final String TAG = "RegistrationProfileActivity";
     private static final String USER_EXTRA = "user";
     private static final String CLIENT_ROLE = "CLIENT";
@@ -97,6 +96,7 @@ public class RegistrationProfileActivity extends AppCompatActivity {
             }
 
             User newUser = new User(
+                    user.getId(),
                     user.getFirstName(),
                     user.getLastName(),
                     user.getMiddleName(),
@@ -111,7 +111,7 @@ public class RegistrationProfileActivity extends AppCompatActivity {
                     CLIENT_ROLE
                     );
 
-            viewModel.signUp(newUser);
+            viewModel.createUser(newUser);
         });
     }
 
@@ -126,19 +126,10 @@ public class RegistrationProfileActivity extends AppCompatActivity {
             }
         });
         viewModel.getUser().observe(this, user -> {
-            viewModel.createUser(user);
-            //TODO start qr reader activity (admin)
-            //TODO start applications list activity (client)
             startActivity(LoginActivity.newIntent(this));
             finish();
         });
-        viewModel.getFirebaseUser().observe(this, firebaseUser -> {
-            /*if (firebaseUser != null) {
-                //TODO start qr reader activity (admin)
-                //TODO start applications list activity (client)
-                startActivity(LoginActivity.newIntent(this));
-            }*/
-        });
+
     }
 
     private Date parseDate(String date) throws ParseException {
