@@ -24,6 +24,7 @@ class QRActivity : AppCompatActivity() {
     private val qrListener: QRListener = {
         applicationId ->
             startActivity(ApplicationManagementActivity.newIntent(this, applicationId))
+            finish()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

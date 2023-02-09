@@ -35,6 +35,15 @@ public class ApplicationActivity extends AppCompatActivity {
         viewModel.getFirebaseUser().observe(this, firebaseUser -> {
             String userId = firebaseUser.getUid();
             binding.buttonMakeAnAppointment.setOnClickListener(v -> {
+                String dateInText = getTrimmedValue(binding.editTextAppointmentDate);
+                if (!Validator.isDateValid(dateInText)) {
+                    Toast.makeText(
+                                    this,
+                                    getString(R.string.write_date_in_a_correct_way),
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                    return;
+                }
                 Date appointmentDateTime;
                 try {
                     appointmentDateTime = parseDate(

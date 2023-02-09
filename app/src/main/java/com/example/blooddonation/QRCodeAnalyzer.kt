@@ -17,9 +17,9 @@ class QRCodeAnalyzer(
     ) : ImageAnalysis.Analyzer {
 
     private val TAG: String = "QRCodeAnalyzer"
+    private var isFirstCall: Boolean = true
 
     override fun analyze(imageProxy: ImageProxy) {
-
 
         val mediaImage = imageProxy.image
         if (mediaImage != null) {
@@ -33,11 +33,18 @@ class QRCodeAnalyzer(
             val scanner = BarcodeScanning.getClient(options)
             scanner.process(image)
                 .addOnSuccessListener { barcodes ->
-                    for (barcode in barcodes) {
-                        val rawValue = barcode.rawValue
-                        if (rawValue != null) {
-                            Log.d(TAG, rawValue)
-                            listener.invoke(rawValue)
+                    if (barcodes.isNotEmpty()) {
+                        if (isFirstCall) {
+                            isFirstCall = false
+                            val barcode = barcodes.last()
+                            if (barcode != null) {
+                                val rawValue = barcode.rawValue
+                                if (rawValue != null) {
+                                    Log.d(TAG, rawValue)
+                                    listener.invoke(rawValue)
+                                    scanner.close()
+                                }
+                            }
                         }
                     }
                 }

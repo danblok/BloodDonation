@@ -70,22 +70,28 @@ public class ApplicationManagementActivity extends AppCompatActivity {
         binding.textViewMiddleName.setText(getString(R.string.middle_name_template, user.getMiddleName()));
         binding.textViewEmail.setText(getString(R.string.email_template, user.getEmail()));
         binding.textViewSex.setText(getString(R.string.sex_template, user.getSex()));
-        binding.textViewAge.setText(new SimpleDateFormat("dd.MM.yyyy").format(user.getDateOfBirth()));
+        binding.textViewAge.setText(getString(
+                R.string.age_template,
+                new SimpleDateFormat("dd.MM.yyyy").format(user.getDateOfBirth())));
         binding.textViewSeriesAndNumber.setText(getString(R.string.series_and_number_template, user.getSeriesAndNumber()));
     }
 
     private void fillUIWithApplication(Application application) {
         switch (application.getStatus()) {
             case "ACCEPTED":
+            {
                 binding.textViewStatus.setText(
                         getString(R.string.accepted)
                 );
                 break;
+            }
             case "CLOSED":
+            {
                 binding.textViewStatus.setText(
                         getString(R.string.closed)
                 );
                 break;
+            }
         }
         binding.textViewDate.setText(
                 new SimpleDateFormat("dd.MM.yyyy").format(application.getDonationDate())

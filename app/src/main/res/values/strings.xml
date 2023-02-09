@@ -48,12 +48,12 @@
     <string name="accepted">Принята</string>
     <string name="closed">Закрыта</string>
     <string name="application">Заявка</string>
-    <string name="last_name_template">Пол: %s</string>
+    <string name="last_name_template">Фамилия: %s</string>
     <string name="first_name_template">Имя: %s</string>
     <string name="middle_name_template">Отчество: %s</string>
     <string name="email_template">Email: %s</string>
     <string name="sex_template">Пол: %s</string>
-    <string name="age_template">Возраст: %d</string>
+    <string name="age_template">Дата рождения: %s</string>
     <string name="series_and_number_template">Серия и номер паспорта: %s</string>
 
     <string-array name="blood_types">

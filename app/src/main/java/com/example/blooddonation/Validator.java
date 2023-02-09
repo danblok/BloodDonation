@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class Validator {
 
-    public static boolean isDateOfBirthValid(String dateOfBirth) {
+    public static boolean isDateValid(String dateOfBirth) {
         Pattern pattern = Pattern.compile("^\\d{2}.\\d{2}.\\d{4}$");
         return pattern.matcher(dateOfBirth).matches();
     }

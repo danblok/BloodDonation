@@ -44,6 +44,15 @@ public class RegistrationProfileActivity extends AppCompatActivity {
 
         User user = (User) getIntent().getSerializableExtra(USER_EXTRA);
         binding.buttonSingUp.setOnClickListener(view -> {
+            String dateInText = getTrimmedValue(binding.editTextDateOfBirth);
+            if (!Validator.isDateValid(dateInText)) {
+                Toast.makeText(
+                                this,
+                                getString(R.string.write_date_in_a_correct_way),
+                                Toast.LENGTH_SHORT)
+                        .show();
+                return;
+            }
             Date dateOfBirth;
             try {
                 dateOfBirth = parseDate(getTrimmedValue(binding.editTextDateOfBirth), "dd.MM.yyyy");
